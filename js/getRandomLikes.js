@@ -5,11 +5,3 @@ export function getRandomLikes() {
   const likes = Math.floor(randomNumber  *  (200 - 15) + 15);
   return likes; // Возвращаем случайное число
 }
-
-// Вызов функции для получения случайного числа
-// const randomLikes = getRandomLikes();
-
-// eslint-disable-next-line no-console
-// console.log(randomLikes); // Выводим случайное число в консоль
-
-
