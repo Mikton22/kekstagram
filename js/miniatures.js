@@ -14,7 +14,7 @@ export function rendersPictureList(pictures) {
 
   const fragment = document.createDocumentFragment(); // Создаем фрагмент для вставки
 
-  pictures.forEach(({ url, likes, comments }) => {
+  pictures.forEach(({ url, likes, comments= [] }) => {
     // Клонируем шаблон
     const miniatureElement = miniatureTemplate.cloneNode(true);
 
@@ -32,3 +32,4 @@ export function rendersPictureList(pictures) {
   // Вставляем фрагмент с миниатюрами в контейнер
   picturesContainer.appendChild(fragment);
 }
+
