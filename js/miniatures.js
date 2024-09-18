@@ -27,8 +27,6 @@ export function rendersPictureList(pictures) {
     fragment.appendChild(miniatureElement);
   });
 
-  // Очищаем контейнер перед добавлением новых элементов
-
   // Вставляем фрагмент с миниатюрами в контейнер
   picturesContainer.appendChild(fragment);
 }

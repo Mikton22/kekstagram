@@ -33,45 +33,38 @@ function getRandomPost() {
 console.log(getRandomPost()); // получаем один пост
 
 const testPictures = [
-  { url: './photos/1.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/2.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/3.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/4.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/5.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/6.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/7.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/8.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/9.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/10.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/11.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/12.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/13.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/14.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/15.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/16.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/17.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/18.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/19.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/20.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/21.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/22.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/23.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/24.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
-  { url: './photos/25.jpg', likes: getRandomLikes(),  comments: getRandomComment() },
+  { url: './photos/1.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/2.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/3.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/4.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/5.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/6.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/7.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/8.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/9.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/10.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/11.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/12.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/13.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/14.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/15.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/16.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/17.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/18.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/19.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/20.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/21.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/22.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/23.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/24.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
+  { url: './photos/25.jpg', likes: getRandomLikes(),  comments: getRandomComment(), description: getRandomDescription() },
 ];
 
 // Вызов функции с тестовыми данными
 rendersPictureList(testPictures);
 
-// open-photo
-function pictureRemove(pht) {
-  for (let i=0; i<testPictures.length; i++) {
-    const picture = testPictures[i];
-    picture.addEventListener('click', function (evt) {
-      evt.preventDefault();
-      console.log('картинка нажата', picture);
-    });
-  }
-}
-
-const pictureURL = document.querySelector('.big-picture__img');
+document.querySelectorAll('.picture').forEach((picture) => {
+  picture.addEventListener('click', function () {
+    openPicture(picture);
+  });
+});
