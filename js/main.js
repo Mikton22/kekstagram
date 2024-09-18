@@ -6,7 +6,7 @@ import { generateAvatarURL } from './generateAvatarURL.js';
 import { getRandomName } from './getRandomName.js';
 
 import { rendersPictureList } from './miniatures.js';
-import { openPicture } from './open-photo.js';
+import {openPicture} from './open-photo.js';
 
 const posts = [];
 
