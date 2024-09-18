@@ -21,15 +21,14 @@ export function rendersPictureList(pictures) {
     // Заполняем данными
     miniatureElement.querySelector('.picture__img').src = url;
     miniatureElement.querySelector('.picture__likes').textContent = likes;
-//    miniatureElement.querySelector('.picture__comments').textContent = comments.length;
+    miniatureElement.querySelector('.picture__comments').textContent = comments.length;
 
     // Добавляем миниатюру во фрагмент
     fragment.appendChild(miniatureElement);
   });
 
   // Очищаем контейнер перед добавлением новых элементов
-  picturesContainer.innerHTML = '';
+
   // Вставляем фрагмент с миниатюрами в контейнер
   picturesContainer.appendChild(fragment);
 }
-
