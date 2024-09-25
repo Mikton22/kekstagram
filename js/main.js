@@ -6,7 +6,8 @@ import { generateAvatarURL } from './generateAvatarURL.js';
 import { getRandomName } from './getRandomName.js';
 
 import { rendersPictureList } from './miniatures.js';
-import {openPicture} from './open-photo.js';
+import { openPicture } from './open-photo.js';
+import { load } from './validate.js';
 
 const posts = [];
 
@@ -64,7 +65,9 @@ const testPictures = [
 rendersPictureList(testPictures);
 
 document.querySelectorAll('.picture').forEach((picture) => {
-  picture.addEventListener('click', function () {
+  picture.addEventListener('click', () => {
     openPicture(picture);
   });
 });
+
+load();
