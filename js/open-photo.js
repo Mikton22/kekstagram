@@ -15,14 +15,13 @@ export const openPicture = (miniature) => {
 function closePicture() {
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onEscPress);
 }
 
-function onEscPress(evt) {
+document.addEventListener('keydown', (evt) => {
   if (evt.key === 'Escape') {
     evt.preventDefault();
     closePicture();
   }
-}
+});
 
 closeButton.addEventListener('click', closePicture);
