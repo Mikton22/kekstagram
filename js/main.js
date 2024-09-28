@@ -7,8 +7,8 @@ import { getRandomName } from './getRandomName.js';
 
 import { rendersPictureList } from './miniatures.js';
 import { openPicture } from './open-photo.js';
-import { load } from './validate.js';
-import { close } from './validate.js';
+import { load } from './upload-photo.js';
+import { close } from './upload-photo.js';
 import { resetScale } from './scale.js';
 
 const posts = [];
