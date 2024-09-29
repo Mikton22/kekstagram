@@ -24,3 +24,46 @@ export const close = () => {
     }
   });
 };
+
+const form = document.querySelector('.img-upload__form');
+const hashtagInput = form.querySelector('.text__hashtags');
+
+const pristine = new Pristine(form);
+
+export function validateHashtag (value) {
+  // console.log(value);
+
+  if (!value) {
+    return true;
+  }
+
+  const forbiddenSymbols = ['@', '!', '$', '%', '^', '&', '*', '(', ')', ',', '.', '/', ';', '[', ']'];
+
+  for (let symbol of forbiddenSymbols) {
+    if (value.includes(symbol)) {
+      return false;
+    } else {
+      return value.startsWith('#') && value.length >=2 && value.length <=20;
+    }
+  }
+}
+
+pristine.addValidator(form.querySelector('#hashtag'), validateHashtag);
+
+form.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+
+  const hashtag = document.querySelector('.text__hashtags').value;
+
+  if (validateHashtag(hashtag)) {
+    console.log('Message send');
+  } else {
+    console.log('Message not send');
+  }
+});
+
+hashtagInput.addEventListener('keydown', (evt) => {
+  if (evt.key === 'Escape') {
+    evt.stopPropagation();  // Блокируем событие Esc для закрытия формы
+  }
+});
