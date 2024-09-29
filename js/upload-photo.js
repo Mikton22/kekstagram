@@ -30,7 +30,8 @@ const hashtagInput = form.querySelector('.text__hashtags');
 
 const pristine = new Pristine(form);
 
-export function validateHashtag (value) {
+// валидируем хэштеги
+function validateHashtag (value) {
   // console.log(value);
 
   if (!value) {
@@ -66,4 +67,28 @@ hashtagInput.addEventListener('keydown', (evt) => {
   if (evt.key === 'Escape') {
     evt.stopPropagation();  // Блокируем событие Esc для закрытия формы
   }
+});
+
+// валидируем комментарий
+const commentInput = form.querySelector('.text__description');
+const socialComment = document.querySelector('.social__footer-text');
+
+function validateComment (value) {
+  return value && value.length <= 140;
+}
+
+// Блокируем событие Esc для закрытия формы
+commentInput.addEventListener('keydown', (evt) => {
+  if (evt.key === 'Escape') {
+    evt.stopPropagation();
+  }
+});
+
+// Присоединяем валидатор
+// pristine.addValidator(commentInput, validateComment, 'Комментарий не должен превышать 140 символов');
+pristine.addValidator(form.querySelector('#description'), validateComment);
+
+// Блокируем отправку формы
+form.addEventListener('submit', (evt) => {
+  evt.preventDefault();
 });
