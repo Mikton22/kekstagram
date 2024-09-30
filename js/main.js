@@ -101,3 +101,33 @@ document.querySelectorAll('.picture').forEach((picture) => {
 load();
 close();
 resetScale();
+
+// загрузка комментариев
+// const commentCount = document.querySelector('.social__comment-count');
+const commentLoader = document.querySelector('.comments-loader');
+const currentComment = document.querySelector('.social__text');
+
+// очистим дефолтную секцию
+function changeAllTextContent() {
+  const allElements = document.querySelectorAll('.social__text');  // Находим все элементы на странице
+
+  allElements.forEach(element => {
+    if (element.childNodes.length > 0) {
+      element.childNodes.forEach(child => {
+        if (child.nodeType === Node.TEXT_NODE && child.nodeValue.trim() !== '') {
+          child.nodeValue = getRandomComment(comments);  // Изменяем только текстовые узлы
+        }
+      });
+    }
+  });
+}
+changeAllTextContent();  // Запускаем функцию изменения текста
+
+// функция работы кнопки загрузить еще
+function getRandomCommentInPost() {
+  commentLoader.addEventListener('click', (evt) => {
+    console.log('Кнопка нажата');
+    // currentComment.textContent = 'Комментарий загружен';
+  });
+}
+getRandomCommentInPost();
