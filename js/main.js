@@ -103,9 +103,7 @@ close();
 resetScale();
 
 // загрузка комментариев
-// const commentCount = document.querySelector('.social__comment-count');
 const commentLoader = document.querySelector('.comments-loader');
-const currentComment = document.querySelector('.social__text');
 
 // очистим дефолтную секцию
 function changeAllTextContent() {
@@ -131,3 +129,11 @@ function getRandomCommentInPost() {
   });
 }
 getRandomCommentInPost();
+
+// счетчик комментариев
+const socialCount = document.querySelector('.comments-count'); // 125
+function countComment() {
+  socialCount.textContent = getRandomComment(comments).length;
+}
+
+countComment();
