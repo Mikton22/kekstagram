@@ -5,6 +5,7 @@ import { getRandomDescription } from './getRandomDescription.js';
 import { generateAvatarURL } from './generateAvatarURL.js';
 import { getRandomName } from './getRandomName.js';
 import { comments, getRandomComment } from './getRandomComment.js';
+import '../nouislider/nouislider/nouislider.js';
 
 import { rendersPictureList } from './miniatures.js';
 import { openPicture } from './open-photo.js';
@@ -137,3 +138,22 @@ function countComment() {
 }
 
 countComment();
+
+const preview = document.querySelector('.img-upload__preview'); // превью эффекта на фото
+const radioEff = document.querySelector('.effects__radio'); // кнопка
+const effectChrome = document.querySelector('.effect-chrome'); // хром
+const effectSepia = document.querySelector('.effect-sepia'); // сепия
+const sliderElement = document.querySelector('.effect-level__slider'); // слайдер
+const valueElement = document.querySelector('.effect-level__value'); // значение
+
+document.addEventListener('DOMContentLoaded', function () {
+  noUiSlider.create(sliderElement, {
+    range: {
+      min: 0,
+      max: 100,
+    },
+    start: 50,
+    step: 1,
+  });
+});
+
