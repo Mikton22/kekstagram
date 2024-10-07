@@ -139,6 +139,7 @@ function countComment() {
 
 countComment();
 
+// effects
 const preview = document.querySelector('.img-upload__preview'); // превью эффекта на фото
 const radioEff = document.querySelector('.effects__radio'); // кнопка
 const effectChrome = document.querySelector('.effect-chrome'); // хром
@@ -156,4 +157,3 @@ document.addEventListener('DOMContentLoaded', function () {
     step: 1,
   });
 });
-
