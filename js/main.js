@@ -13,6 +13,7 @@ import { load } from './upload-photo.js';
 import { close } from './upload-photo.js';
 import { resetScale } from './scale.js';
 // import { validateHashtag } from './upload-photo.js';
+import './effect.js';
 
 // реализация показа рандомного поста
 // const posts = [];
@@ -138,22 +139,3 @@ function countComment() {
 }
 
 countComment();
-
-// effects
-const preview = document.querySelector('.img-upload__preview'); // превью эффекта на фото
-const radioEff = document.querySelector('.effects__radio'); // кнопка
-const effectChrome = document.querySelector('.effect-chrome'); // хром
-const effectSepia = document.querySelector('.effect-sepia'); // сепия
-const sliderElement = document.querySelector('.effect-level__slider'); // слайдер
-const valueElement = document.querySelector('.effect-level__value'); // значение
-
-document.addEventListener('DOMContentLoaded', function () {
-  noUiSlider.create(sliderElement, {
-    range: {
-      min: 0,
-      max: 100,
-    },
-    start: 50,
-    step: 1,
-  });
-});
