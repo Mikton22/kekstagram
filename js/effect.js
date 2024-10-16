@@ -1,7 +1,12 @@
+import {resetScale} from "./scale.js";
+
 const image = document.querySelector('.img-upload__preview img'); // превью эффекта на фото
 const sliderEffect = document.querySelector('.effect-level__slider'); // слайдер
 const effectLevel = document.querySelector('.effect-level__value'); // значение
 const form = document.querySelector('.img-upload__form'); // форма загрузки
+const body = document.querySelector('body');
+const overlay = form.querySelector('.img-upload__overlay');
+const hashtagField = form.querySelector('.text__hashtags');
 
 const EFFECTS = [
   {
@@ -102,3 +107,34 @@ updateSlider();
 
 form.addEventListener('change', onFormChange);
 sliderEffect.noUiSlider.on('update', onSliderUpdate);
+
+function showModal () {
+  overlay.classList.remove('hidden');
+  resetScale();
+  body.classList.add('modal-open');
+  document.addEventListener('keydown', onEscKeyDown);
+}
+
+function hideModal() {
+  form.reset();
+  overlay.classList.add('hidden');
+  body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onEscKeyDown)
+}
+
+//Проверка фокуса на полях ввода текста
+
+function isTextFieldFocus() {
+  return document.activeElement === hashtagField || document.activeElement === commentField;
+}
+
+//Проверка, что нажата Esc
+
+function onEscKeyDown (evt) {
+  if (evt.key === 'Escape' && !isTextFieldFocus()) {
+    evt.preventDefault();
+    hideModal();
+  }
+}
+
+

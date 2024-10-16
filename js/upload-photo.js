@@ -2,6 +2,9 @@ const uploadBtn = document.querySelector('#upload-file');
 const openFile = document.querySelector('.img-upload__overlay');
 const body = document.querySelector('body');
 const closeBtn = document.querySelector('.img-upload__cancel');
+// const button = document.querySelector('.img-upload__submit'); // кнопка опубликовать
+// const errorBtn = document.querySelector('.error__button');
+// const err = document.querySelector('#error');
 
 // load photo
 export const load = () => {
@@ -92,3 +95,104 @@ pristine.addValidator(form.querySelector('#description'), validateComment);
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
 });
+
+const hashtagField = form.querySelector('.text__hashtags');
+const hashtagExample = /^#[A-Za-zА-Яа-яЁё0-9]{0,19}$/
+const MAX_HASHTAGS_COUNT = 5;
+const submitButton = form.querySelector('.img-upload__submit');
+
+function validateTags() {
+  if (hashtagField.value === '') {
+    return true;
+  } else {
+    const tagsList = hashtagField.value.trim().split(' ')
+
+    let result;
+
+    for (let i=0; i<tagsList.length; i++) {
+      result = true;
+
+      if (!hashtagExample.test(tagsList[i])) {
+
+        result = false;
+        break;
+      }
+    }
+
+    return result;
+  }
+}
+
+function validateTagsCount() {
+  return  hashtagField.value.trim().split(' ').length <= MAX_HASHTAGS_COUNT;
+}
+
+pristine.addValidator(
+  hashtagField,
+  validateTagsCount,
+  'Максимальное количество хештегов - 5!'
+);
+
+pristine.addValidator(
+  hashtagField,
+  validateTags,
+  'Введён некорретный хештег!');
+
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = 'Публикую...';
+}
+
+const setUserFormSubmit = (onSuccess) => {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    const isValid = pristine.validate();
+    if (isValid) {
+      blockSubmitButton();
+      sendData(
+        () => {
+          onSuccess();
+          unblockSubmitButton();
+        },
+        () => {
+          showAlert('Не удалось опубликовать изображение. Попробуйте ещё раз.');
+          unblockSubmitButton();
+        },
+        new FormData(evt.target),
+      );
+    }
+  });
+};
+
+//Получение данных с сервера
+const getData = (onSuccess) => {
+  fetch('https://25.javascript.htmlacademy.pro/kekstagram/data')
+    .then((response) => response.json())
+    .then((picturesList) => {
+      onSuccess(picturesList)
+    })
+}
+
+// Отправка данных на сервер
+const sendData = (onSuccess, onFail, body) => {
+  setUserFormSubmit(onCancelBtnClick)
+  fetch('https://25.javascript.htmlacademy.pro/kekstagram',
+    {
+      method: 'POST',
+      body,
+    },
+  )
+    .then((response) => {
+      if (response.ok) {
+        onSuccess()
+      } else {
+        onFail('Не удалось опубликовать фотографию. Попробуйте ещё раз')
+      }
+    } )
+    .catch(() => {
+      onFail('Не удалось опубликовать фотографию. Попробуйте ещё раз')
+    })
+}
+
+export {getData, sendData}
