@@ -108,7 +108,7 @@ updateSlider();
 form.addEventListener('change', onFormChange);
 sliderEffect.noUiSlider.on('update', onSliderUpdate);
 
-function showModal () {
+export function showModal () {
   overlay.classList.remove('hidden');
   resetScale();
   body.classList.add('modal-open');
@@ -123,7 +123,6 @@ function hideModal() {
 }
 
 //Проверка фокуса на полях ввода текста
-
 function isTextFieldFocus() {
   return document.activeElement === hashtagField || document.activeElement === commentField;
 }
