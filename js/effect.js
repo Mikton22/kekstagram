@@ -1,4 +1,4 @@
-import {resetScale} from "./scale.js";
+import {resetScale} from './scale.js';
 
 const image = document.querySelector('.img-upload__preview img'); // превью эффекта на фото
 const sliderEffect = document.querySelector('.effect-level__slider'); // слайдер
@@ -136,5 +136,3 @@ function onEscKeyDown (evt) {
     hideModal();
   }
 }
-
-
