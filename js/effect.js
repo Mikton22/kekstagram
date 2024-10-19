@@ -124,11 +124,10 @@ function hideModal() {
 
 //Проверка фокуса на полях ввода текста
 function isTextFieldFocus() {
-  return document.activeElement === hashtagField || document.activeElement === commentField;
+  return document.activeElement === hashtagField || document.activeElement === 'commentField';
 }
 
 //Проверка, что нажата Esc
-
 function onEscKeyDown (evt) {
   if (evt.key === 'Escape' && !isTextFieldFocus()) {
     evt.preventDefault();
