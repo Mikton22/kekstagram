@@ -12,6 +12,7 @@ import { openPicture } from './open-photo.js';
 import { load } from './upload-photo.js';
 import { close } from './upload-photo.js';
 import { resetScale } from './scale.js';
+import { loadImages } from './sort.js';
 // import { validateHashtag } from './upload-photo.js';
 import './effect.js';
 
@@ -139,3 +140,5 @@ function countComment() {
 }
 
 countComment();
+
+loadImages();
